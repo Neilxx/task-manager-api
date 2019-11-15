@@ -42,6 +42,7 @@ router.post('/users', async (req, res) => {
     await user.save()
     sendWelcomeEmail(user.email, user.name)
     const token = await user.generateAuthToken()
+    res.cookie('authToken', token)
 
     res.status(201).send({ user, token })
   } catch (e) {
@@ -65,7 +66,6 @@ router.post('/users/logout', auth, async (req, res) => {
     req.user.tokens = req.user.tokens.filter((token) => {
       return token.token !== req.token
     })
-    console.log(req.user.tokens)
     await req.user.save()
     res.send('Logout Successfully')
   } catch (e) {
