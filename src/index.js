@@ -7,10 +7,14 @@ const taskRouter = require('./routers/task')
 
 const app = express()
 const port = process.env.PORT
+const corsOptions = {
+  credentials: true,
+  origin: 'http://localhost:8080'
+}
 
 app.use(express.json())
 app.use(cookieParser())
-app.use(cors({ credentials: true }))
+app.use(cors(corsOptions))
 app.use(userRouter)
 app.use(taskRouter)
 
