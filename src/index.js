@@ -9,7 +9,7 @@ const app = express()
 const port = process.env.PORT
 const corsOptions = {
   credentials: true,
-  origin: 'http://localhost:8080'
+  origin: 'https://neilxxx-task-manager-app.herokuapp.com'
 }
 
 app.use(express.json())
